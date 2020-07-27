@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "metegol-5ff10": {
+      "hosting": {
+        "app": [
+          "metegol-5ff10"
+        ]
+      }
+    }
+  }
+}

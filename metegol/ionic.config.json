@@ -1,0 +1,7 @@
+{
+  "name": "metegol",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

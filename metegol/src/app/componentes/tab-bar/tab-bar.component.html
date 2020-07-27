@@ -1,0 +1,22 @@
+<ion-tabs>
+  <ion-tab-bar slot="bottom">
+    <ion-tab-button tab="home" 
+                    style="background-color:  rgba(185, 238, 186, 0.9);">
+      <ion-icon name="home"></ion-icon>        
+      <ion-label>Inicio</ion-label>
+    </ion-tab-button> 
+
+    <ion-tab-button (click)="goTo('listado')" 
+                    style="background-color:  rgba(185, 238, 186, 0.9);">
+      <ion-icon name="images"></ion-icon>
+      <ion-label>Listados</ion-label>
+    </ion-tab-button> 
+
+    <ion-tab-button (click)="goTo('alta')" 
+                    style="background-color: rgba(185, 238, 186, 0.9);">
+      <ion-icon name="list"></ion-icon>      
+      <ion-label>Alta</ion-label>
+    </ion-tab-button>
+
+  </ion-tab-bar>
+</ion-tabs>

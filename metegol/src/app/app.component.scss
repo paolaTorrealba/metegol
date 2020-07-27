@@ -1,0 +1,83 @@
+
+  // agrego estilo para splas
+  #custom-overlay{
+    position:fixed;
+    top:0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 100000;
+    width: 100%;
+    background-color: rgb(227, 229, 230);
+    
+  }
+
+  #flb{
+    // background: url("../assets/imagenes/splash.gif") no-repeat center / cover ;
+    height: 100%;  
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  #visual{
+    position: absolute;
+    z-index: 99999999;;
+    top: 22%;
+    left: 90%;
+    animation-name: fotografiando;
+    animation-duration: 10s;
+
+  }
+
+ 
+
+  @keyframes fotografiando {
+    from {
+      top:22%;  
+      left:90%;   
+      z-index: 99999999;
+      // transform: scale(0.5)
+    }10%{
+      top:22%;  
+      // left:70%;      
+      z-index: 99999999;
+      // transform: scale(0.8)
+     
+    }20%{
+      top:22%;  
+      // left:60%;      
+      z-index: 99999999;
+      // transform: scale(0.8)
+    }30%{
+      top:22%;  
+      // left:50%;      
+      z-index: 99999999;
+      // transform: scale(0.8)
+    }40%{
+      top:22%;  
+      // left:40%;   
+      // transform: scale(0.5);
+      z-index: 99999999;
+  
+    }
+    80%{
+      top:10%; 
+      left:20%;        
+      z-index: 99999999;
+      // transform: scale(0.5)
+    }90%{
+      top:40%;  
+      left:20%;            
+      z-index: 99999999;
+      // transform: scale(0.8)
+  
+    }to{
+      z-index: 99999999;
+      top:20%;
+      left:20%;        
+
+     
+    }
+    
+  }
