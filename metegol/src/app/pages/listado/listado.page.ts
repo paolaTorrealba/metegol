@@ -3,6 +3,8 @@ import { Partido } from 'src/app/clases/partido';
 import { ToastController, ModalController } from '@ionic/angular';
 import { PartidoService } from 'src/app/servicios/partido.service';
 import { ModalDetallePartidoPage } from '../modal-detalle-partido/modal-detalle-partido.page';
+import { AuthService } from 'src/app/servicios/auth.service';
+import { UsuarioService } from 'src/app/servicios/usuario.service';
 
 @Component({
   selector: 'app-listado',
@@ -12,10 +14,13 @@ import { ModalDetallePartidoPage } from '../modal-detalle-partido/modal-detalle-
 export class ListadoPage implements OnInit {
  public listaPartidos :Partido[];
  listaParaMostrar:Partido[];
+ public perfil:string;
   constructor(
     public toastController: ToastController,
     private modalController:ModalController,
     private partidoService:PartidoService,
+    private authService:AuthService,
+    private usuarioService:UsuarioService,
   ) { 
     this.listaParaMostrar = [];
   }
@@ -37,6 +42,17 @@ export class ListadoPage implements OnInit {
     }
   }
 
+
+  obtenerUsuario(){
+    let user = this.authService.getCurrentUser();
+   
+    this.usuarioService.getUserById(user.uid)
+    .subscribe(userData => {  
+      this.perfil=userData[0].perfil;   
+      
+      console.log(this.perfil)
+    })  
+  }
 
   async mostrarModal(partido) {
     const modal = await this.modalController.create({

@@ -46,7 +46,8 @@ export class AltasPage implements OnInit {
     this.diaMaximo.setDate(this.diaMinimo.getDate() + 15);
     
   }
-  async registrar(){      
+  async registrar(){   
+    this.partido.estado="pendiente";
     this.partido.fecha = new Date(this.fecha);
     let auxHora= new Date(this.hora);
     this.partido.fecha.setHours(auxHora.getHours(),auxHora.getMinutes(), 0, 0);

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, LoadingController } from '@ionic/angular';
 import { Partido } from 'src/app/clases/partido';
 import { PartidoService } from 'src/app/servicios/partido.service';
+import { CameraService } from 'src/app/servicios/camera.service';
 
 @Component({
   selector: 'app-modal-detalle-partido',
@@ -15,6 +16,8 @@ export class ModalDetallePartidoPage implements OnInit {
     private partidoService:PartidoService,
     public modalController: ModalController,
     public toastController: ToastController,
+    private camaraService: CameraService,
+    private loadingController: LoadingController,
 
   ) { }
 
@@ -22,7 +25,9 @@ export class ModalDetallePartidoPage implements OnInit {
   }
 
   async actualizarPartido(partido) {
-    console.log("actualizar partido")
+    console.log(partido)
+    this.partido.estado="finalizado"
+    console.log("actualizar partido", this.partido)
     await this.partidoService.updatePartido('partido', this.partido.id, this.partido);
 
     this.cerrarModal();
@@ -32,4 +37,24 @@ export class ModalDetallePartidoPage implements OnInit {
   async cerrarModal() {
     await this.modalController.dismiss();
   }
+
+  tomarFoto(){   
+    // this.camaraService.tomarFoto('mesas', Date.now());
+    this.camaraService.tomarFoto('partido', Date.now()).then( urlFoto => {
+         this.partido.foto = urlFoto;
+         this.presentLoading();
+    }); 
+  }
+  async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 2000,
+      message: "Espere un momento..."
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+  }
+
+  
+
 }

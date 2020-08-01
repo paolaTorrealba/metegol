@@ -4,6 +4,7 @@ export class Partido {
     jugador1Apellido:string;
     jugador2Nombre:string;
     jugador2Apellido:string;
+    foto:string;
     estado:string;
     ganador:string
     fecha:Date

@@ -1,16 +1,21 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>modal-detalle-partido</ion-title>
+    <ion-title>Actualizar Partido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
-    <form class="form" *ngIf="partido.estado != 'finalizado'">
-        <ion-item>
+    <form class="form" *ngIf="partido.estado != undefined">
+        <ion-item *ngIf="partido.estado == 'finalizado'">
           <ion-label position="floating">Ganador</ion-label>
           <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" disabled></ion-input>
         </ion-item>
+
+        <ion-item *ngIf="partido.estado != 'finalizado'">
+            <ion-label position="floating">Ganador</ion-label>
+            <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" ></ion-input>
+          </ion-item>
        
         
         <!-- <ion-item>
@@ -18,9 +23,11 @@
           <ion-input type="text" required [(ngModel)]="mesa.tipo" name="tipo"></ion-input>
         </ion-item> -->
        
-   
+
+
+        <ion-button color="success" (click)="tomarFoto()">Tomar Foto</ion-button>
         <ion-button color="success" (click)="cerrarModal()">Cancelar</ion-button>
-        <ion-button color="success" (click)="actualizarMesa()">Actualizar Datos</ion-button>
+        <ion-button color="success" (click)="actualizarPartido()">Actualizar Datos</ion-button>
       </form>
       
       

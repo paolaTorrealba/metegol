@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
+import { Usuario } from '../clases/usuario';
+import { AngularFirestore } from "@angular/fire/firestore";
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UsuarioService {
-  constructor(private afsAuth: AngularFireAuth){}
+  constructor(private afsAuth: AngularFireAuth,
+    private db: AngularFirestore
+    ){}
  
   registerUser(value){
    return new Promise<any>((resolve, reject) => {
@@ -16,7 +20,9 @@ export class UsuarioService {
        err => reject(err))
    })
   }
- 
+  getUserById(userId) {
+    return this.db.collection<Usuario>('usuarios', (ref) =>  ref.where ('id', '==', userId).limit(1)). valueChanges();   
+  }
   loginUser(value){
    return new Promise<any>((resolve, reject) => {
     this.afsAuth.auth.signInWithEmailAndPassword(value.email, value.password)
