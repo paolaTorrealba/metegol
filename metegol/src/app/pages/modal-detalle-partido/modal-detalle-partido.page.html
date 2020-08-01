@@ -15,7 +15,7 @@
               <img [src]="partido.foto">
          </ion-card-content>
          </ion-card>
-        <br><br><br><br><br><br>
+        <br><br>
         <ion-item *ngIf="partido.estado == 'finalizado'">
           <ion-label position="floating">Ganador</ion-label>
           <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" disabled></ion-input>

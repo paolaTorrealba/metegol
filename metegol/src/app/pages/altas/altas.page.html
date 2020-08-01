@@ -16,7 +16,7 @@
 <form class="form">
   <ion-list lines="full" class="ion-no-margin ion-no-padding">
   
-      <h2><span>JUGADOR 1</span></h2>
+      <h2><span style="margin-left: 30%;">JUGADOR 1</span></h2>
       <ion-item class="group">
         <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
         <ion-input type="text" class="input" [(ngModel)]="partido.jugador1Nombre" name="tipo" required></ion-input>
@@ -25,7 +25,7 @@
           <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
           <ion-input type="text" class="input" [(ngModel)]="partido.jugador1Apellido" name="apellido" required></ion-input>
       </ion-item>
-      <h2><span>JUGADOR 2</span></h2>
+      <h2><span style="margin-left: 30%;">JUGADOR 2</span></h2>
       <ion-item class="group">
         <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
         <ion-input type="text" class="input" [(ngModel)]="partido.jugador2Nombre" name="tipo" required></ion-input>
@@ -55,7 +55,7 @@
         </form>
 
   </ion-list>
-  <ion-button color="primary" (click)="registrar()">Registrar</ion-button>
+  <ion-button style="margin-left: 30%;" color="primary" (click)="registrar()">Registrar</ion-button>
 </form>
 
 

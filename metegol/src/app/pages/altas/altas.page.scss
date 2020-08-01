@@ -4,7 +4,7 @@ form{
 }
 
 ion-button{
-    padding-left: 32%;
+    // padding-left: 32%;
     position: inherit;
 }
 
@@ -13,4 +13,16 @@ ion-item{
         color: #054a4c;
         font-family: sans-serif;
     }   
+}
+ion-header{
+    ion-toolbar{
+        ion-button{
+            font-size: 20px;
+            color: antiquewhite;
+        }
+        ion-title{
+            text-transform: uppercase;
+            text-align: center;
+        }
+    } 
 }

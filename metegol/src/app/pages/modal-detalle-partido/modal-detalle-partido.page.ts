@@ -23,7 +23,7 @@ export class ModalDetallePartidoPage implements OnInit {
   ) { 
 
     if(this.partido==undefined){
-      this.navCtrl.navigateForward('/login');
+      this.navCtrl.navigateForward('/home');
     }
     console.log("construcor de modal")
   }
