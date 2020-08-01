@@ -7,6 +7,7 @@ import { LoadingController } from '@ionic/angular';
 import { ToastService } from 'src/app/servicios/toast.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-altas',
@@ -23,12 +24,15 @@ export class AltasPage implements OnInit {
   esMismoDia:boolean;
   horasPartidoDiaCorriente:string[];
   mesesAbreviados:string[];
+  public perfil:string;
 
   public partido : Partido;
   constructor(
     public partidoService :PartidoService,
     private loadingController: LoadingController,
     private toastService:ToastService,
+    private authService:AuthService,
+    private usuarioService:UsuarioService, 
     private router: Router,
   ) {
     this.horasPartidoDiaCorriente = [];
@@ -41,10 +45,25 @@ export class AltasPage implements OnInit {
    }
 
   ngOnInit() {
+
+    this.obtenerUsuario();
+    this.presentLoading();
+
     this.diaMinimo = new Date();
     this.diaMaximo = new Date();
     this.diaMaximo.setDate(this.diaMinimo.getDate() + 15);
     
+  }
+
+  obtenerUsuario(){
+    let user = this.authService.getCurrentUser();
+   
+    this.usuarioService.getUserById(user.uid)
+    .subscribe(userData => {  
+      this.perfil=userData[0].perfil;   
+      
+      console.log("perfil: ",this.perfil)
+    })  
   }
   async registrar(){   
     this.partido.estado="pendiente";

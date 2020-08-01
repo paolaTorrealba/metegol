@@ -2,7 +2,7 @@
     <div class="login-wrap">
       <div class="login-html">
         Bienvenido a METEGOL
-        <div class="image">
+        <div class="image" *ngIf="perfil=='admin'">
           <h2><span>CREAR PARTIDO</span></h2>
           <img src="../../../assets/imagenes/casa_linda.png" (click)="crearPartido()" class="button">
           

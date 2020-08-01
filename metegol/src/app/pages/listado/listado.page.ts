@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Partido } from 'src/app/clases/partido';
-import { ToastController, ModalController } from '@ionic/angular';
+import { ToastController, ModalController, LoadingController } from '@ionic/angular';
 import { PartidoService } from 'src/app/servicios/partido.service';
 import { ModalDetallePartidoPage } from '../modal-detalle-partido/modal-detalle-partido.page';
 import { AuthService } from 'src/app/servicios/auth.service';
@@ -20,12 +20,15 @@ export class ListadoPage implements OnInit {
     private modalController:ModalController,
     private partidoService:PartidoService,
     private authService:AuthService,
-    private usuarioService:UsuarioService,
+    private usuarioService:UsuarioService, 
+    private loadingController: LoadingController,
   ) { 
     this.listaParaMostrar = [];
   }
 
   ngOnInit() {
+    this.obtenerUsuario();
+    this.presentLoading();
 
     this.partidoService.getAllPartidos().subscribe(data => {
       this.listaPartidos = data;
@@ -33,16 +36,39 @@ export class ListadoPage implements OnInit {
       this.listaParaMostrar.sort(this.comparar);
     });
   }
-  editar(partido:Partido){
 
-    if(partido.estado == "finalizado"){
-      this.mostrarModal(partido);      
-    } else {
-      this.mostrarModal(partido);
-    }
+
+  editar(partido:Partido){
+    if(this.perfil==="admin"){
+        if(partido.estado == "finalizado"){
+          this.mostrarModal(partido);      
+        } else {
+          this.mostrarModal(partido);          
+        }
+      }
+      else{
+        this.mostrarToast("Solo perfil Admin!");
+
+      }
   }
 
+    ///Funciones que llaman al toast y al modal
+    async mostrarToast(mensaje:string) {
+      const toast = await this.toastController.create({
+        message: mensaje,
+        duration: 2000
+      });
+      toast.present();
+    }
+ async presentLoading() {
+    const loading = await this.loadingController.create({
+      duration: 2000,
+      message: "Espere un momento..."
+    });
+    await loading.present();
 
+    const { role, data } = await loading.onDidDismiss();
+  }
   obtenerUsuario(){
     let user = this.authService.getCurrentUser();
    
@@ -50,7 +76,7 @@ export class ListadoPage implements OnInit {
     .subscribe(userData => {  
       this.perfil=userData[0].perfil;   
       
-      console.log(this.perfil)
+      console.log("perfil: ",this.perfil)
     })  
   }
 
