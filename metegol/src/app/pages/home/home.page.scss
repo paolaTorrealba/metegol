@@ -20,11 +20,12 @@
   }
   h2 span /* decorating the text within the span tag */
   { 
-    border-radius: 100px;
-    color: white; 
-    font: bold 24px/45px Helvetica, Sans-Serif; 
-    letter-spacing: -1px;  
-    background: rgba(0, 0, 0, 0.7); padding: 10px; 
+
+    color: white;
+    font: bold 24px/45px Helvetica, Sans-Serif;
+    letter-spacing: -1px;
+    background: rgb(37 173 172 / 67%);
+    padding: 10px;
     opacity: 0.8;
   }
   h2 span.spacer { padding:0 5px; }

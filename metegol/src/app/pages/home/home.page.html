@@ -1,15 +1,23 @@
-   <ion-content>
+  <ion-header>
+      <ion-toolbar color="tituloLindas">
+        <ion-title style="color: rgb(255, 255, 255);
+                          text-transform: uppercase;
+                          text-align: center;">
+          METEGOL</ion-title>
+      </ion-toolbar>
+  </ion-header>
+    
+  <ion-content>
     <div class="login-wrap">
-      <div class="login-html">
-        Bienvenido a METEGOL
+      <div class="login-html">     
         <div class="image" *ngIf="perfil=='admin'">
           <h2><span>CREAR PARTIDO</span></h2>
-          <img src="../../../assets/imagenes/casa_linda.png" (click)="crearPartido()" class="button">
+          <img src="../../../assets/imagenes/nuevo.png" (click)="crearPartido()" class="button">
           
         </div>
         <div class="image">
           <h2><span>LISTADO DE PARTIDOS</span></h2>
-          <img src="../../../assets/imagenes/casa_linda.png" (click)="listado()" class="button">
+          <img src="../../../assets/imagenes/listado.png" (click)="listado()" class="button">
         </div>
         <!-- <app-botones [type]="'lindas'" [photoUrl]="'../../../assets/images/lindas.png'" [destinationUrl]="'/main/camera/lindas'"></app-botones>
         <app-botones [type]="'feas'" [photoUrl]="'../../../assets/images/casa_fea.png'" [destinationUrl]="'/main/camera/feas'"></app-botones> -->
