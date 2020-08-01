@@ -21,6 +21,9 @@ export class HomePage implements OnInit {
     console.log("ruteo")
     this.router.navigate(['/altas']);       
   }
+  logout(){      
+    this.authService.logOut();
+  }
 
   listado(){
     console.log("ruteo")

@@ -4,7 +4,7 @@
     <div class="imgContainer"><img src="../../../assets/icon/icon-visual.png"></div>
       <form class="login__form" [formGroup]="validations_form" (ngSubmit)="loginUsuario(validations_form.value)">
       <div class="login__row" >        
-        <img  style="width: 10%;" src="../../../assets/images/avatar.png">
+        <!-- <img  style="width: 10%;" src="../../../assets/images/avatar.png"> -->
         <ion-input value="{{ email }}"  type="text" class="login__input name" placeholder="Correo Electrónico" formControlName="email" required></ion-input>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.email">
@@ -15,7 +15,7 @@
         </div>
       </div>
       <div class="login__row" >       
-        <img  style="width: 10%;" src="../../../assets/images/contrasena.png">
+        <!-- <img  style="width: 10%;" src="../../../assets/images/contrasena.png"> -->
         <ion-input value="{{ password }}" type="password" class="login__input pass" placeholder="Contraseña" formControlName="password" required></ion-input>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.password">
@@ -35,7 +35,7 @@
  
          <ion-fab style="top: 52%;" vertical="top" horizontal="end" slot="fixed">
           <ion-fab-button >
-            <ion-icon class="icon1" src="../assets/images/usuario.svg" ></ion-icon>
+            <!-- <ion-icon class="icon1" src="../assets/images/usuario.svg" ></ion-icon> -->
           </ion-fab-button>
           <ion-fab-list side="top">
             <ion-fab-button (click)="SetearUsuario('admin@admin.com', '111111')">Admin</ion-fab-button>
