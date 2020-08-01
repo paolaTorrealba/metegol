@@ -1,9 +1,94 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>altas</ion-title>
+    <ion-title>Metegol</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
-</ion-content>
+
+<form class="form">
+  <ion-list lines="full" class="ion-no-margin ion-no-padding">
+  
+      <h2><span>JUGADOR 1</span></h2>
+      <ion-item class="group">
+        <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
+        <ion-input type="text" class="input" [(ngModel)]="partido.jugador1Nombre" name="tipo" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="partido.jugador1Apellido" name="apellido" required></ion-input>
+      </ion-item>
+      <h2><span>JUGADOR 2</span></h2>
+      <ion-item class="group">
+        <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
+        <ion-input type="text" class="input" [(ngModel)]="partido.jugador2Nombre" name="tipo" required></ion-input>
+      </ion-item>
+      <ion-item class="group">
+          <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
+          <ion-input type="text" class="input" [(ngModel)]="partido.jugador2Apellido" name="apellido" required></ion-input>
+      </ion-item>
+   
+      <form #form="ngForm">
+          <ion-item>
+            <ion-label for="fecha" class="label" position="floating">Fecha</ion-label>
+            <ion-datetime [(ngModel)]="fecha" name="fecha" [min]="diaMinimo.toISOString().substring(0, 10)" [max]="diaMaximo.toISOString().substring(0, 10)" displayFormat="D MMM"
+            [monthShortNames]="mesesAbreviados"
+            (ionChange)="calcularHora()" required></ion-datetime>    
+          </ion-item>
+          <ion-item *ngIf="!esMismoDia">
+            <ion-label for="hora" class="label" position="floating">Hora</ion-label>
+            <ion-datetime [(ngModel)]="hora" name="hora" [min]="diaMinimo.toISOString().substring(0, 10)" [max]="diaMaximo.toISOString().substring(0, 10)" displayFormat="HH:mm"
+            hourValues="08,09,10,11,12,13,14,15,16,17,18,19,20,21,22,23,00,01" minuteValues="0,15,30,45" required></ion-datetime>
+          </ion-item>
+          <ion-item *ngIf="esMismoDia">
+            <ion-label for="hora" class="label" position="floating">Hora</ion-label>
+            <ion-datetime [(ngModel)]="hora" name="hora" [min]="diaMinimo.toISOString().substring(0, 10)" [max]="diaMaximo.toISOString().substring(0, 10)" displayFormat="HH:mm"
+            [hourValues]="horasPartidoDiaCorriente" minuteValues="0,15,30,45" required></ion-datetime>
+          </ion-item>
+        </form>
+
+  </ion-list>
+  <ion-button color="success" (click)="tomarFoto()">Sacar Foto</ion-button>
+  <ion-button color="success" (click)="registrar()">Registrar</ion-button>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content>
+    <h2><span>JUGADOR 1</span></h2>
+  <ion-item class="group">
+    <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
+    <ion-input type="text" class="input" [(ngModel)]="jugador1.nombre" name="tipo" required></ion-input>
+  </ion-item>
+  <ion-item class="group">
+      <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
+      <ion-input type="text" class="input" [(ngModel)]="jugador1.apellido" name="apellido" required></ion-input>
+  </ion-item>
+  <h2><span>JUGADOR 2</span></h2>
+  <ion-item class="group">
+    <ion-label for="pass" class="label" position="floating">Nombre</ion-label>
+    <ion-input type="text" class="input" [(ngModel)]="jugador2.nombre" name="tipo" required></ion-input>
+  </ion-item>
+  <ion-item class="group">
+      <ion-label for="pass" class="label" position="floating">Apellido</ion-label>
+      <ion-input type="text" class="input" [(ngModel)]="jugador2.apellido" name="apellido" required></ion-input>
+  </ion-item>
+</ion-content> -->

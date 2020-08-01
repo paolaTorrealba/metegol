@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -7,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  constructor(
+    public router: Router
+  ) { }
 
+  crearPartido(){
+    console.log("ruteo")
+    this.router.navigate(['/altas']);       
+  }
   ngOnInit() {
   }
 

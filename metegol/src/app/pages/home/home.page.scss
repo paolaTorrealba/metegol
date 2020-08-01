@@ -1,0 +1,36 @@
+.button{
+    width:99%;
+    height: 47vh;
+    margin-top: 9px;
+    outline: none;
+  }
+  
+  .image 
+  { 
+    text-align: center;
+    position: relative; /* To help the image + text element to get along with the rest of the page*/ 
+    width: 100%;
+  } 
+  h2 
+  { 
+    position: absolute; /* To place the text on the image*/
+    top: 75%; /* The exact location of the text from the top of the image*/
+    left: 0; /* Other beautification stuff */
+    width: 100%; 
+  }
+  h2 span /* decorating the text within the span tag */
+  { 
+    border-radius: 100px;
+    color: white; 
+    font: bold 24px/45px Helvetica, Sans-Serif; 
+    letter-spacing: -1px;  
+    background: rgba(0, 0, 0, 0.7); padding: 10px; 
+    opacity: 0.8;
+  }
+  h2 span.spacer { padding:0 5px; }
+  
+  img{
+    border-radius: 100px;
+    box-shadow: 1px 1px 1px 1px;
+    color: black;
+  }
