@@ -44,6 +44,9 @@ export class AltasPage implements OnInit {
   this.partido = new Partido();
   
    }
+   inicio (){
+    this.router.navigate([`/home`]);
+  }
 
   ngOnInit() {
 

@@ -50,6 +50,10 @@ export class HomePage implements OnInit {
       }
   }
 
+
+  inicio (){
+    this.router.navigate([`/home`]);
+  }
   async presentLoading() {
     const loading = await this.loadingController.create({
       duration: 2000,

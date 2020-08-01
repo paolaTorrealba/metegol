@@ -1,12 +1,21 @@
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Actualizar Partido</ion-title>
+    <ion-toolbar color="tituloLindas"> 
+        <ion-title style="color: rgb(255, 255, 255);
+                          text-transform: uppercase;
+                          text-align: center;">
+    Actualizar Partido</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
     <form class="form" *ngIf="partido != undefined">
+        <ion-card class="card">
+            <ion-card-content *ngIf="partido.foto != undefined">          
+              <img [src]="partido.foto">
+         </ion-card-content>
+         </ion-card>
+        <br><br><br><br><br><br>
         <ion-item *ngIf="partido.estado == 'finalizado'">
           <ion-label position="floating">Ganador</ion-label>
           <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" disabled></ion-input>
@@ -25,7 +34,7 @@
        
 
 
-        <ion-button color="primary" (click)="tomarFoto()">Tomar Foto</ion-button>
+        <ion-button color="primary" (click)="tomarFoto()">Tomar Foto</ion-button><br>
         <ion-button color="warning" (click)="cerrarModal()">Cancelar</ion-button>
         <ion-button color="success" (click)="actualizarPartido()">Actualizar Datos</ion-button>
       </form>

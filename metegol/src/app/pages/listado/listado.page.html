@@ -1,5 +1,8 @@
 <ion-header>
     <ion-toolbar color="tituloLindas">
+        <ion-button slot="start" fill="clear" (click)="inicio()"> 
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
       <ion-title style="color:  rgb(255, 255, 255);
                         text-transform: uppercase;
                         text-align: center;">
@@ -10,10 +13,14 @@
 <ion-content>
     <ion-list> 
         <ion-item (click)="editar(item)" *ngFor="let item of listaParaMostrar">
+            <ion-avatar *ngIf="item.foto != undefined" slot="start">
+                <img [src]="[item.foto]">
+            </ion-avatar>
           <ion-label>
             <h2>Jugador1: {{item.jugador1Nombre}}</h2>
             <ion-label>Jugador2: {{item.jugador2Nombre}}</ion-label>
             <ion-label>Hora: {{item.fecha.toDate() | date:'dd/MM/yyyy HH:mm'}}</ion-label>
+            <ion-label>Estado: {{item.estado | uppercase}}</ion-label>
           </ion-label>
         </ion-item> 
     </ion-list>
