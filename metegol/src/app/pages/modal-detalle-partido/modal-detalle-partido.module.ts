@@ -3,12 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
-import { ListadoPage } from './listado.page';
+import { ModalDetallePartidoPage } from './modal-detalle-partido.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: ListadoPage
+    component: ModalDetallePartidoPage
   }
 ];
 
@@ -19,6 +19,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [ListadoPage]
+  declarations: [ModalDetallePartidoPage]
 })
-export class ListadoPageModule {}
+export class ModalDetallePartidoPageModule {}

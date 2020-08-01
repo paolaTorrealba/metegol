@@ -22,6 +22,7 @@ const routes: Routes = [
   { path: 'main', loadChildren: './pages/main/main.module#MainPageModule' },
   { path: 'listado', loadChildren: './pages/listado/listado.module#ListadoPageModule' },
   { path: 'altas', loadChildren: './pages/altas/altas.module#AltasPageModule' },
+  { path: 'modal-detalle-partido', loadChildren: './pages/modal-detalle-partido/modal-detalle-partido.module#ModalDetallePartidoPageModule' },
 ];
 
 @NgModule({

@@ -15,6 +15,11 @@ export class HomePage implements OnInit {
     console.log("ruteo")
     this.router.navigate(['/altas']);       
   }
+
+  listado(){
+    console.log("ruteo")
+    this.router.navigate(['/listado']);       
+  }
   ngOnInit() {
   }
 

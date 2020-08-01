@@ -12,6 +12,7 @@ import { AngularFireModule } from '@angular/fire';
 import {AngularFirestoreModule } from '@angular/fire/firestore';
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
+import {ModalDetallePartidoPageModule} from  './pages/modal-detalle-partido/modal-detalle-partido.module';
 
 @NgModule({
   declarations: [AppComponent],
@@ -20,6 +21,7 @@ import { File } from '@ionic-native/file/ngx';
     AngularFireModule.initializeApp(firebaseConfig),
     BrowserModule, 
     AngularFireAuthModule,
+    ModalDetallePartidoPageModule,
     AngularFirestoreModule,
     IonicModule.forRoot(), AppRoutingModule],
   providers: [
