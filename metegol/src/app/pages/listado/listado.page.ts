@@ -23,7 +23,9 @@ export class ListadoPage implements OnInit {
     private usuarioService:UsuarioService, 
     private loadingController: LoadingController,
   ) { 
+    console.log("construcor de listado")
     this.listaParaMostrar = [];
+
   }
 
   ngOnInit() {

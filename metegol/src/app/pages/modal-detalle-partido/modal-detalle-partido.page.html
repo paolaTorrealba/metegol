@@ -6,7 +6,7 @@
 
 <ion-content>
 
-    <form class="form" *ngIf="partido.estado != undefined">
+    <form class="form" *ngIf="partido != undefined">
         <ion-item *ngIf="partido.estado == 'finalizado'">
           <ion-label position="floating">Ganador</ion-label>
           <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" disabled></ion-input>

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ToastController, ModalController, LoadingController } from '@ionic/angular';
+import { ToastController, ModalController, LoadingController, NavController } from '@ionic/angular';
 import { Partido } from 'src/app/clases/partido';
 import { PartidoService } from 'src/app/servicios/partido.service';
 import { CameraService } from 'src/app/servicios/camera.service';
@@ -13,13 +13,20 @@ export class ModalDetallePartidoPage implements OnInit {
   @Input() partido:Partido;
 
   constructor(
+    private navCtrl: NavController,
     private partidoService:PartidoService,
     public modalController: ModalController,
     public toastController: ToastController,
     private camaraService: CameraService,
     private loadingController: LoadingController,
 
-  ) { }
+  ) { 
+
+    if(this.partido==undefined){
+      this.navCtrl.navigateForward('/login');
+    }
+    console.log("construcor de modal")
+  }
 
   ngOnInit() {
   }

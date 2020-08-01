@@ -15,7 +15,9 @@ export class HomePage implements OnInit {
     private authService:AuthService,
     private loadingController: LoadingController,
     private usuarioService:UsuarioService, 
-  ) { }
+  ) { 
+    console.log()
+  }
 
   crearPartido(){
     console.log("ruteo")
@@ -35,12 +37,17 @@ export class HomePage implements OnInit {
   }
 
   obtenerUsuario(){
-    let user = this.authService.getCurrentUser();   
-    this.usuarioService.getUserById(user.uid)
-    .subscribe(userData => {  
-      this.perfil=userData[0].perfil;        
-      console.log("perfil: ",this.perfil)
-    })  
+    let user = this.authService.getCurrentUser();  
+     if (user==undefined){
+      this.router.navigate(['/login']);  
+     }
+     else{
+        this.usuarioService.getUserById(user.uid)
+        .subscribe(userData => {  
+          this.perfil=userData[0].perfil;        
+          console.log("perfil: ",this.perfil)
+        })    
+      }
   }
 
   async presentLoading() {

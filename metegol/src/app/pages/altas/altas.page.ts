@@ -35,6 +35,7 @@ export class AltasPage implements OnInit {
     private usuarioService:UsuarioService, 
     private router: Router,
   ) {
+    console.log("construcor de altas")
     this.horasPartidoDiaCorriente = [];
     this.mesesAbreviados = ["ene", "feb", "mar", "abr", "may", "jun",
       "jul", "ago", "sep", "oct", "nov", "dic"];
