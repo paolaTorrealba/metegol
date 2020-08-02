@@ -10,13 +10,16 @@ import { LoadingController } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
   public perfil:string;
+  public usu:string;
   constructor(
     public router: Router,
     private authService:AuthService,
     private loadingController: LoadingController,
     private usuarioService:UsuarioService, 
   ) { 
-    console.log()
+    console.log("constructor de HOME")
+    this.usu = localStorage.getItem('metegol');
+   console.log("usu",this.usu)
   }
 
   crearPartido(){
@@ -37,7 +40,10 @@ export class HomePage implements OnInit {
   }
 
   obtenerUsuario(){
-    let user = this.authService.getCurrentUser();  
+    
+    let user = this.authService.getCurrentUser(); 
+    this.presentLoading();
+    console.log("obtener usu",user) 
      if (user==undefined){
       this.router.navigate(['/login']);  
      }
@@ -48,6 +54,7 @@ export class HomePage implements OnInit {
           console.log("perfil: ",this.perfil)
         })    
       }
+      
   }
 
 

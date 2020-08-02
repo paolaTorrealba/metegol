@@ -21,11 +21,11 @@ export class ModalDetallePartidoPage implements OnInit {
     private loadingController: LoadingController,
 
   ) { 
-
+    console.log("construcor de MODAL")
     if(this.partido==undefined){
       this.navCtrl.navigateForward('/home');
     }
-    console.log("construcor de modal")
+
   }
 
   ngOnInit() {

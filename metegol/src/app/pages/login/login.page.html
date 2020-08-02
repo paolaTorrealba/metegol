@@ -1,49 +1,46 @@
 <ion-content>
-  <div class="login">
-    <br>
-    <div class="imgContainer"><img src="../../../assets/imagenes/icon.png"></div>
-      <form class="login__form" [formGroup]="validations_form" (ngSubmit)="loginUsuario(validations_form.value)">
-      <div class="login__row" >        
-        <!-- <img  style="width: 10%;" src="../../../assets/images/avatar.png"> -->
-        <ion-input value="{{ email }}"  type="text" class="login__input name" placeholder="Correo Electrónico" formControlName="email" required></ion-input>
+  <div class="login-wrap">
+    <div class="login-html">
+      <span class="tab">Iniciar Sesión</span>
+      <form class="form" [formGroup]="form" (ngSubmit)="onSubmitLogin(form.value)">
+        <div class="group">
+          <ion-label for="usuario" class="label" position="floating">Correo electrónico</ion-label>
+          <input type="email" class="input" formControlName="email" required>
+        </div>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.email">
-            <div style="color: transparent;" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+            <div class="error-message"
+              *ngIf="form.get('email').hasError(validation.type) && (form.get('email').dirty || form.get('email').touched)">
               {{ validation.message }}
             </div>
           </ng-container>
         </div>
-      </div>
-      <div class="login__row" >       
-        <!-- <img  style="width: 10%;" src="../../../assets/images/contrasena.png"> -->
-        <ion-input value="{{ password }}" type="password" class="login__input pass" placeholder="Contraseña" formControlName="password" required></ion-input>
+        <div class="group">
+          <ion-label for="pass" class="label" position="floating">Contraseña</ion-label>
+          <input type="password" class="input" formControlName="password" data-type="password" required>
+        </div>
         <div class="validation-errors">
           <ng-container *ngFor="let validation of validation_messages.password">
-            <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+            <div class="error-message"
+              *ngIf="form.get('password').hasError(validation.type) && (form.get('password').dirty || form.get('password').touched)">
               {{ validation.message }}
             </div>
           </ng-container>
         </div>
-      </div>
-      <div> <button class="button" style="color: rgb(0 0 0);
-        font-size: medium;
-        font-family: inherit;
-        text-transform: uppercase;" 
-        type="submit"  [disabled]="!validations_form.valid">Ingresar</button></div>
-         <label class="error-message">{{errorMessage}}</label>
-    </form>
- 
-         <ion-fab style="top: 32%;" vertical="top" horizontal="start" slot="fixed">
-          <ion-fab-button >
-            <!-- <ion-icon class="icon1" src="../assets/images/usuario.svg" ></ion-icon> -->
-          </ion-fab-button>
-          <ion-fab-list side="top">
-            <ion-fab-button (click)="SetearUsuario('admin@admin.com', '111111')">Admin</ion-fab-button>
-            <ion-fab-button (click)="SetearUsuario('invitado@invitado.com', '222222')">Inv</ion-fab-button>
-            <ion-fab-button (click)="SetearUsuario('usuario@usuario.com', '333333')">Usu</ion-fab-button>                  
-            <ion-fab-button (click)="SetearUsuario('anonimo@anonimo.com', '444444')">Anon</ion-fab-button> 
-            <ion-fab-button (click)="SetearUsuario('tester@tester.com', '555555')">Test</ion-fab-button> 
-          </ion-fab-list>
-      </ion-fab>       
+        <br>
+        <div class="group">
+          <ion-button shape="round" type="submit" [disabled]="!form.valid">Ingresar</ion-button>
+                 
+        </div>
+      </form>
+      <div class="hr"></div>     
+      <ion-item id="defaultUsers">
+        <ion-label>Usuarios predefinidos</ion-label>
+        <ion-select okText="Aceptar" cancelText="Cancelar" [(ngModel)]="usuario" (ionChange)="setDefaultUser()">
+          <ion-select-option *ngFor="let usuario of defaultUsers" [value]="usuario">{{usuario.email}}</ion-select-option>
+        </ion-select>
+      </ion-item>
+    </div>
   </div>
+
 </ion-content>

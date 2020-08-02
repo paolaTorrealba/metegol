@@ -13,6 +13,7 @@ export class MainPage implements OnInit {
   constructor(private route: ActivatedRoute,
     private general: General,
      private router: Router) {
+       console.log("constructor de main")
     this.type = this.route.snapshot.params['type'];
     if(this.type){
       this.general.type = this.type;

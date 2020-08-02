@@ -17,7 +17,7 @@ export class AuthService {
   logIn(email: string, password: string):Promise<firebase.auth.UserCredential> {
   
     return new Promise((resolve, reject) => {
-   
+       console.log("login", email,password)
       this.AFauth.auth.signInWithEmailAndPassword(email, password)
        .then(respuesta => {  
     

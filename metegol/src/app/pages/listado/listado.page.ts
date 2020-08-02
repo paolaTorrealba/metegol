@@ -5,6 +5,7 @@ import { PartidoService } from 'src/app/servicios/partido.service';
 import { ModalDetallePartidoPage } from '../modal-detalle-partido/modal-detalle-partido.page';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listado',
@@ -18,6 +19,7 @@ export class ListadoPage implements OnInit {
   constructor(
     public toastController: ToastController,
     private modalController:ModalController,
+    private router: Router,
     private partidoService:PartidoService,
     private authService:AuthService,
     private usuarioService:UsuarioService, 
@@ -26,6 +28,10 @@ export class ListadoPage implements OnInit {
     console.log("construcor de listado")
     this.listaParaMostrar = [];
 
+  }
+
+  inicio (){
+    this.router.navigate([`/home`]);
   }
 
   ngOnInit() {
@@ -41,7 +47,7 @@ export class ListadoPage implements OnInit {
 
 
   editar(partido:Partido){
-    if(this.perfil==="admin"){
+    if(this.perfil=="admin"){
         if(partido.estado == "finalizado"){
           this.mostrarModal(partido);      
         } else {
@@ -82,6 +88,16 @@ export class ListadoPage implements OnInit {
     })  
   }
 
+
+  async presentToast(message, color) {
+    const toast = await this.toastController.create({
+      message: message,
+      duration: 2000,
+      position: "bottom",
+      color: color
+    });
+    toast.present();
+  }
   async mostrarModal(partido) {
     const modal = await this.modalController.create({
       component: ModalDetallePartidoPage,

@@ -10,7 +10,7 @@
   <ion-content>
     <div class="login-wrap">
       <div class="login-html">     
-        <div class="image" *ngIf="perfil=='admin'">
+        <div class="image" *ngIf="perfil=='admin' || usu=='admin'">
           <h2><span>CREAR PARTIDO</span></h2>
           <img src="../../../assets/imagenes/nuevo.png" (click)="crearPartido()" class="button">
           
