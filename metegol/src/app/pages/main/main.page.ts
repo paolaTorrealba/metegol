@@ -24,5 +24,6 @@ export class MainPage implements OnInit {
   }
 
   ngOnInit() {
+    console.log("init de main")
   }
 }

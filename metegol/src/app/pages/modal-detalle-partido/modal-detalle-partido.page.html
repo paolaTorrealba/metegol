@@ -16,7 +16,19 @@
          </ion-card-content>
          </ion-card>
         <br><br>
-        <ion-item *ngIf="partido.estado == 'finalizado'">
+        
+        <ion-item class="group">
+            <ion-label style="font-size: x-large; color: brown; font-family: revert;" 
+            for="ganador" class="label" position="floating">Ganador</ion-label>
+            <br>
+            <ion-select placeholder="Seleccione un Jugador" [(ngModel)]="partido.ganador" name="sector">
+              <ion-select-option value="{{partido.jugador1Nombre}}">{{partido.jugador1Nombre}}</ion-select-option>
+              <ion-select-option value="{{partido.jugador2Nombre}}">{{partido.jugador2Nombre}}</ion-select-option>
+            </ion-select>
+          </ion-item>
+
+
+        <!-- <ion-item *ngIf="partido.estado == 'finalizado'">
           <ion-label position="floating">Ganador</ion-label>
           <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" disabled></ion-input>
         </ion-item>
@@ -25,7 +37,7 @@
             <ion-label position="floating">Ganador</ion-label>
             <ion-input type="text" required [(ngModel)]="partido.ganador" name="ganador" ></ion-input>
           </ion-item>
-       
+        -->
         
         <!-- <ion-item>
           <ion-label position="floating">Tipo</ion-label>
@@ -34,8 +46,9 @@
        
 
 
-        <ion-button color="primary" (click)="tomarFoto()">Tomar Foto</ion-button><br>
-        <ion-button color="warning" (click)="cerrarModal()">Cancelar</ion-button>
+        <ion-button style="margin-left: 35%;" color="primary" (click)="tomarFoto()">Tomar Foto</ion-button>
+        <br><br>
+        <ion-button style="margin-left: 15%;" color="warning" (click)="cerrarModal()">Cancelar</ion-button>
         <ion-button color="success" (click)="actualizarPartido()">Actualizar Datos</ion-button>
       </form>
       

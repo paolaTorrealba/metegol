@@ -11,7 +11,7 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 })
 export class AppComponent {
   private splash= true;
-  private notificationAudio= new Audio("../assets/sonidos/inicio--metegol.mp3")
+  private notificationAudio= new Audio("../assets/sonidos/inicio-metegol.mp3")
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,

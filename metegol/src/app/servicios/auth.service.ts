@@ -14,7 +14,8 @@ export class AuthService {
      }
 
   ///Login del usuario registrado con email y password
-  logIn(email: string, password: string):Promise<firebase.auth.UserCredential> {
+  logIn(email: string, password: string)
+  :Promise<firebase.auth.UserCredential> {
   
     return new Promise((resolve, reject) => {
        console.log("login", email,password)
@@ -26,6 +27,16 @@ export class AuthService {
     })    
   }
 
+  loginUser(value){
+    return new Promise<any>((resolve, reject) => {
+     this.AFauth.auth.signInWithEmailAndPassword(value.email, value.password)
+      .then(
+        res => { resolve(res) },
+        err => reject(err))
+    })
+   }
+
+   
   logOut() {
     this.AFauth.auth.signOut().then(auth => {
       this.router.navigate(['/login']);

@@ -4,9 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [  
   { path: '', redirectTo: 'login', pathMatch: 'full' },
   { path: 'login', loadChildren: './pages/login/login.module#LoginPageModule' },
-  {
-    path: 'home', loadChildren: () => import('./pages/home/home.module').then( m => m.HomePageModule)
-  },
+  { path: 'home', loadChildren: './pages/home/home.module#HomePageModule'},
   // {
   //   path: 'login', loadChildren: () => import('./pages/login/login.module').then( m => m.LoginPageModule)
   // },
@@ -14,6 +12,7 @@ const routes: Routes = [
   { path: 'listado', loadChildren: './pages/listado/listado.module#ListadoPageModule' },
   { path: 'altas', loadChildren: './pages/altas/altas.module#AltasPageModule' },
   { path: 'modal-detalle-partido', loadChildren: './pages/modal-detalle-partido/modal-detalle-partido.module#ModalDetallePartidoPageModule' },
+  { path: 'listado-mejores', loadChildren: './pages/listado-mejores/listado-mejores.module#ListadoMejoresPageModule' },
 ];
 
 @NgModule({

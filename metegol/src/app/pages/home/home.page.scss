@@ -1,6 +1,16 @@
-.button{
+.ion-header{
+      .ion-toolbar{
+          .ion-button{
+            width:9%;
+            height: 47vh;
+            margin-top: 9px;
+            outline: none;
+          } 
+        }
+      }
+.buttones{
     width:99%;
-    height: 47vh;
+    // height: 47vh;
     margin-top: 9px;
     outline: none;
   }
@@ -35,3 +45,11 @@
     // box-shadow: 1px 1px 1px 1px;
     // color: black;
   }
+
+  .ion-title{
+    background-color: aqua
+    }
+    
+    ion-content{
+        background-color: darkgray;
+    }

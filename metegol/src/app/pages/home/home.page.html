@@ -1,26 +1,47 @@
-  <ion-header>
+  <!-- <ion-header>
       <ion-toolbar color="tituloLindas">  
+          <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
+              <ion-icon style="color:#fff" name="menu"></ion-icon>
+          </ion-button>
         <ion-title style="color: rgb(255, 255, 255);
                           text-transform: uppercase;
                           text-align: center;">
           METEGOL</ion-title>
       </ion-toolbar>
-  </ion-header>
+  </ion-header> -->
+
+  <ion-header>
+      <ion-toolbar color="tituloLindas">
+          <ion-button slot="end" fill="clear" (click)="presentActionSheet()">
+              <ion-icon style="color:#fff" name="menu"></ion-icon>
+          </ion-button>
+        <ion-title style="color:  rgb(255, 255, 255);
+                          text-transform: uppercase;
+                          text-align: center;">
+                          METEGOL</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    
     
   <ion-content>
     <div class="login-wrap">
       <div class="login-html">     
-        <div class="image" *ngIf="perfil=='admin' || usu=='admin'">
+        <div class="image" *ngIf="perfil=='admin'">
           <h2><span>CREAR PARTIDO</span></h2>
-          <img src="../../../assets/imagenes/nuevo.png" (click)="crearPartido()" class="button">
+          <img src="../../../assets/imagenes/nuevo.png" (click)="crearPartido()" class="buttones">
           
         </div>
         <div class="image">
           <h2><span>LISTADO DE PARTIDOS</span></h2>
-          <img src="../../../assets/imagenes/listado.png" (click)="listado()" class="button">
+          <img src="../../../assets/imagenes/listado.png" (click)="listado()" class="buttones">
         </div>
         <!-- <app-botones [type]="'lindas'" [photoUrl]="'../../../assets/images/lindas.png'" [destinationUrl]="'/main/camera/lindas'"></app-botones>
         <app-botones [type]="'feas'" [photoUrl]="'../../../assets/images/casa_fea.png'" [destinationUrl]="'/main/camera/feas'"></app-botones> -->
+        <div class="image">
+            <h2><span>LOS 5 MEJORES</span></h2>
+            <img src="../../../assets/imagenes/listado.png" (click)="listadoMejores()" class="buttones">
+        </div>
+      
       </div>
     </div>
   </ion-content>

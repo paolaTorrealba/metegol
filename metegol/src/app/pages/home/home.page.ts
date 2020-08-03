@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { UsuarioService } from 'src/app/servicios/usuario.service';
-import { LoadingController } from '@ionic/angular';
+import { LoadingController, ActionSheetController } from '@ionic/angular';
 @Component({
   selector: 'app-home',
   templateUrl: './home.page.html',
@@ -14,12 +14,16 @@ export class HomePage implements OnInit {
   constructor(
     public router: Router,
     private authService:AuthService,
+    public actionSheetController: ActionSheetController,
     private loadingController: LoadingController,
     private usuarioService:UsuarioService, 
   ) { 
+    this.obtenerUsuario();
+    this.presentLoading();
     console.log("constructor de HOME")
     this.usu = localStorage.getItem('metegol');
    console.log("usu",this.usu)
+   console.log("perfil ", this.perfil)
   }
 
   crearPartido(){
@@ -34,7 +38,32 @@ export class HomePage implements OnInit {
     console.log("ruteo")
     this.router.navigate(['/listado']);       
   }
+
+  listadoMejores(){
+    console.log("ruteo")
+    this.router.navigate(['/listado-mejores']);     
+  }
+
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+       buttons: [{
+        text: 'Salir',
+        role: 'destructive',
+        icon: 'log-out',
+        handler: () => {
+          
+          this.onLogout()
+
+        },
+      }]
+    });
+    await actionSheet.present();
+  }
+   onLogout(){
+  this.authService.logOut(); 
+   }
   ngOnInit() {
+    console.log("init de HOME")
     this.obtenerUsuario();
     this.presentLoading();
   }

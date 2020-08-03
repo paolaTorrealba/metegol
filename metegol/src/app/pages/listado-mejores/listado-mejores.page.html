@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar color="tituloLindas">
+        <ion-button slot="start" fill="clear" (click)="inicio()"> 
+            <ion-icon name="arrow-back"></ion-icon>
+        </ion-button>
+      <ion-title style="color:  rgb(255, 255, 255);
+                        text-transform: uppercase;
+                        text-align: center;">
+        LISTADO 5 MEJORES</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <ion-list> 
+        <ion-item *ngFor="let item of listaParaMostrar">
+          <ion-label  *ngIf="item.nombreGanador != undefined" >
+            <h2>Jugador: {{item.nombreGanador}}</h2> 
+            <h2>Partidos Ganados: {{item.cantidad}}</h2>                
+          </ion-label>
+        </ion-item> 
+    </ion-list>
+</ion-content>

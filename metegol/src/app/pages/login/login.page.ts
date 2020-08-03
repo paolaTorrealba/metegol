@@ -7,7 +7,7 @@ import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/servicios/auth.service';
 import { ToastService } from 'src/app/servicios/toast.service';
-
+import { Storage } from '@ionic/storage';
 
 @Component({
   selector: 'app-login',
@@ -17,10 +17,12 @@ import { ToastService } from 'src/app/servicios/toast.service';
 export class LoginPage implements OnInit {
   public email: string;
   public password: string;
+  errorMessage: string = '';
   form: FormGroup;
   defaultUsers: Array<any> = [];
   usuario: Usuario;
   suscripcion:Subscription;
+
 
   splash = true;
   audioSplash = true;
@@ -32,6 +34,7 @@ export class LoginPage implements OnInit {
     private userService: UsuarioService,
     private toastService:ToastService,
     private loadingController: LoadingController,
+    private storage: Storage
 
    
   ) { 
@@ -65,15 +68,6 @@ export class LoginPage implements OnInit {
     await loading.present();
     const { role, data } = await loading.onDidDismiss();
   }
-  // ionViewDidEnter() {
-  //   if (this.audioSplash === true) {
-  //     let audio = new Audio();
-  //     audio.src = 'assets/audio/splash.mp3';
-  //     audio.play();
-  //     this.audioSplash = false;
-  //   }
-  //   setTimeout(() => this.splash = false, 4000);
-  // }
 
   validation_messages = {
     'email': [
@@ -87,11 +81,11 @@ export class LoginPage implements OnInit {
   };
 
   addDefaultUser() {
-    this.defaultUsers.push({ "email": "admin@admin.com", "password": "111111" });
-    this.defaultUsers.push({ "email": "invitado@invitado.com", "password": "222222" });
-    this.defaultUsers.push({ "email": "usuario@usuario.com", "password": "333333" });
-    this.defaultUsers.push({ "email": "tester@tester.com", "password": "555555" });
-    this.defaultUsers.push({ "email": "anonimo@anonimo.com", "password": "444444" });
+    this.defaultUsers.push({"email":"anonimo@anonimo.com", "password":"444444", "perfil":"usuario", "sexo":"masculino"});
+    this.defaultUsers.push({"email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
+    this.defaultUsers.push({"email":"admin@admin.com", "password":"111111", "perfil":"admin", "sexo":"femenino"});
+    this.defaultUsers.push({"email":"invitado@invitado.com", "password":"222222", "perfil":"invitado", "sexo":"femenino"});
+    this.defaultUsers.push({"email":"usuario@usuario.com", "password":"333333", "perfil":"usuario", "sexo":"masculino"});
   }
 
   setDefaultUser() {
@@ -106,24 +100,35 @@ export class LoginPage implements OnInit {
     this.password=this.usuario['password'];
     form.email=this.usuario['email'];
     form.password=this.usuario['password'];
-    console.log("onSubmitLogin ",form) 
+    console.log("onSubmitLogin +",form) 
     let respuesta;
     this.presentLoading();
     
     try {
-      respuesta = await this.authService.logIn(form.email, form.password);
-      this.suscripcion = this.userService.getUser(respuesta.user.uid)
-      .subscribe(async usuario => {
-        if (usuario != undefined) {         
-          if(respuesta.user.emailVerified != true) {
-            respuesta.user.sendEmailVerification();
-            this.toastService.mostrarToast('Error: Debe verificar su email', 'error');     
-          } else {   
-            this.router.navigate([`/home`]);
-            this.suscripcion.unsubscribe();
-          }
-         }   
-      })        
+
+    this.authService.loginUser(form)
+    .then(res => {
+      this.errorMessage = "";
+      console.log("guardo en storage ",form.perfil)
+      this.storage.set('perfil', form.perfil);
+      this.router.navigate([`/home`]);
+    }, err => {
+      this.errorMessage = err.message;
+    })
+      // respuesta = await this.authService.logIn(form.email, form.password);
+      // console.log("respuesta", respuesta)
+      // this.suscripcion = this.userService.getUser(respuesta.user.uid)
+      // .subscribe(async usuario => {
+      //   if (usuario != undefined) {         
+      //     if(respuesta.user.emailVerified != true) {
+      //       respuesta.user.sendEmailVerification();
+      //       this.toastService.mostrarToast('Error: Debe verificar su email'+respuesta.user, 'error');     
+      //     } else {   
+      //       this.router.navigate([`/home`]);
+      //       this.suscripcion.unsubscribe();
+      //     }
+      //    }   
+      // })        
     } catch (error) {
       console.log("error", error);
       this.toastService.mostrarToast('Error: Verifique usuario y contraseña', 'error');
