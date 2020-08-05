@@ -1,0 +1,29 @@
+<ion-content>
+    <ion-header>
+      <ion-toolbar color="tituloLindas">
+        <ion-title style="color: rgb(248, 221, 247);
+                          text-transform: uppercase;
+                          text-align: center;">
+          Gráficos Lindas</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <div class="chart">
+      <canvas #chart (click)="showImage($event)"></canvas>
+    </div>
+        
+          <ion-card class="welcome-card" *ngIf="imageObject">
+            <ion-card-header>
+              <ion-card-title>
+                  <span>Subida por: {{imageObject.usuario}}</span>           
+                  <br>
+                  <span>Fecha: {{imageObject.date.toDate() | date:'dd/MM/yyyy HH:mm'}}</span>
+                  <br>
+                  <span>Votos: {{imageObject.votos}}</span>
+              </ion-card-title>
+              <ion-card-content>
+                <img src={{imageObject.url}}>
+              </ion-card-content>
+            </ion-card-header>
+          </ion-card>
+ </ion-content>

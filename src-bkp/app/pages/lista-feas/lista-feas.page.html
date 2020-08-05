@@ -1,0 +1,30 @@
+<ion-content> 
+    <ion-header>
+      <ion-toolbar color="tituloFeas">
+        <ion-title class="ion-text-right"><ion-icon name="search" (click)="getAllImages()" class="refresh"></ion-icon></ion-title>
+      </ion-toolbar>
+    </ion-header>
+  
+    <ion-slides [options]="slideOpts" #slides [pager]="true">
+      <ion-slide *ngFor="let image of listaOrdenada">
+        <ion-card>
+            <ion-card-header>
+              <ion-card-title>
+                  <span>Subida por: {{image.email}} </span>
+                  <br>
+                  <span>Votos: {{image.votos}}</span>
+                  <br>
+                  <span>Fecha: {{image.date.toDate() | date:'dd/MM/yyyy HH:mm'}}</span>
+              </ion-card-title>
+            </ion-card-header>
+            <ion-card-content>
+              <img src={{image.img}}>
+            </ion-card-content>
+          </ion-card>
+      </ion-slide>
+    </ion-slides>
+  
+    <ion-item *ngIf="images?.length==0">
+        No hay imagenes subidas
+      </ion-item>
+  </ion-content>

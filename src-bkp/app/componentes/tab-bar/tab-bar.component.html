@@ -1,0 +1,32 @@
+<ion-tabs>
+    <ion-tab-bar slot="bottom">
+      <ion-tab-button tab="home" 
+                      style="background-color:  rgba(185, 238, 186, 0.9);">
+        <ion-icon name="home"></ion-icon>        
+        <ion-label>Inicio</ion-label>
+      </ion-tab-button>   
+      <ion-tab-button (click)="goTo('gallery')" 
+                      style="background-color:  rgba(185, 238, 186, 0.9);">
+        <ion-icon name="images"></ion-icon>
+        <ion-label>Galería</ion-label>
+      </ion-tab-button> 
+  
+      <ion-tab-button (click)="goTo('list')" 
+                      style="background-color: rgba(185, 238, 186, 0.9);">
+        <ion-icon name="list"></ion-icon>      
+        <ion-label>Listado</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="goTo('camera')" 
+                    style="background-color:  rgba(185, 238, 186, 0.9);">
+        <ion-icon name="camera"></ion-icon>        
+        <ion-label>Cámara</ion-label>
+      </ion-tab-button>
+
+      <ion-tab-button (click)="goTo('chart')"
+                    style="background-color:  rgba(185, 238, 186, 0.9);">
+       <ion-icon name="pie"></ion-icon>    
+       <ion-label>Gráficos</ion-label>
+     </ion-tab-button>
+    </ion-tab-bar>
+  </ion-tabs>

@@ -1,0 +1,22 @@
+
+<div *ngIf="mostrarHome" id="card__home" class="card">
+  <div id="card-content">
+    <div id="card-title">      
+      <div class="underline-title underline-home"></div>
+    </div>
+  </div>
+</div>
+<div  class="grid-container-home" class="body">
+    
+    <button id="cosas_lindas" class="btn-home">
+      <span class="icon">
+        <img class="img-lindo" src="./assets/images/ok.png" (click)="fotoOK()">  
+      </span>     
+    </button>
+    
+    <button id="cosas_feas" class="btn-home">
+      <span class="icon">
+        <img class="img-lindo" src="./assets/images/no.png" (click)="fotoNOK()">   
+      </span>
+     </button> 
+</div>

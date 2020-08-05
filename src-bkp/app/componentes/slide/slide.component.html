@@ -1,0 +1,32 @@
+<ion-header>
+    <ion-toolbar color="primary">
+      <ion-title class="ion-text-right"><ion-icon name="refresh" (click)="getAllImages()" class="refresh"></ion-icon></ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  
+  <ion-slides [options]="slideOpts" #slides [pager]="true">
+    <ion-slide *ngFor="let image of images">
+      <ion-card>
+          <ion-card-header>
+            <ion-card-title>
+              <span>Subida por: {{image.usuario}} - Votos: {{image.votos}}</span>
+              <br>
+              <span>Fecha: {{image.date | date:'dd-MM-yyyy'}}</span>
+            </ion-card-title>
+            <ion-card-content>
+              <img src={{image.url}}>
+            </ion-card-content>
+          </ion-card-header>
+        </ion-card>
+    </ion-slide>
+  </ion-slides>
+  
+  <div *ngIf="images?.length > 0">
+    <ion-icon (click)="vote(0)"  class="thumb ion-float-left" name="thumbs-down"></ion-icon> 
+    <ion-icon (click)="vote(1)" class="thumb ion-float-right" style="color:blue" name="thumbs-up"></ion-icon>
+  </div>
+    
+  <ion-item *ngIf="images?.length==0">
+    No hay imagenes subidas
+  </ion-item>

@@ -1,0 +1,28 @@
+<div *ngIf="showSplash"   class="splash" >
+    <div class="spinner"></div>
+  </div>
+  <ion-nav [root]="rootPage" #content swipeBackEnabled="false" class="nav"></ion-nav>
+  <div class="login-page">
+     <div class="form">
+       <form class="register-form">
+         <input position="floating" type="text" placeholder="name"/>
+         <input position="floating" type="password" placeholder="password"/>
+         <input type="text" placeholder="email address"/>
+         <button>create</button>
+         <p class="message">Already registered? <a href="#">Sign In</a></p>
+       </form>
+       <form class="login-form">
+         <input  type="text"  [(ngModel)]="email" name="email" placeholder="email"/>
+         <input  type="password"  [(ngModel)]="password"  name="password" placeholder="password"/>
+       
+
+         <label class="errorLogin">El usuario o contraseña no son válidos</label>
+         <br>
+         <br>
+         <button (click)="onSubmitLogin()" expand="block" class="botonLogin">login</button>
+        
+        <!-- <p class="message">Not registered? <a href="#">Create an account</a></p>-->
+       </form>
+     </div>
+   
+   </div>

@@ -1,0 +1,49 @@
+<ion-content>
+  <div class="login">
+    <br>
+    <div class="imgContainer"><img src="../../../assets/icon/icon-visual.png"></div>
+      <form class="login__form" [formGroup]="validations_form" (ngSubmit)="loginUsuario(validations_form.value)">
+      <div class="login__row" >        
+        <img  style="width: 10%;" src="../../../assets/images/avatar.png">
+        <ion-input value="{{ email }}"  type="text" class="login__input name" placeholder="Correo Electrónico" formControlName="email" required></ion-input>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.email">
+            <div style="color: transparent;" *ngIf="validations_form.get('email').hasError(validation.type) && (validations_form.get('email').dirty || validations_form.get('email').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div class="login__row" >       
+        <img  style="width: 10%;" src="../../../assets/images/contrasena.png">
+        <ion-input value="{{ password }}" type="password" class="login__input pass" placeholder="Contraseña" formControlName="password" required></ion-input>
+        <div class="validation-errors">
+          <ng-container *ngFor="let validation of validation_messages.password">
+            <div class="error-message" *ngIf="validations_form.get('password').hasError(validation.type) && (validations_form.get('password').dirty || validations_form.get('password').touched)">
+              {{ validation.message }}
+            </div>
+          </ng-container>
+        </div>
+      </div>
+      <div> <button class="button" style="color: rgb(239 237 131);
+        font-size: medium;
+        font-family: inherit;
+        text-transform: uppercase;" 
+        type="submit"  [disabled]="!validations_form.valid">Ingresar</button></div>
+         <label class="error-message">{{errorMessage}}</label>
+    </form>
+ 
+         <ion-fab style="top: 52%;" vertical="top" horizontal="end" slot="fixed">
+          <ion-fab-button >
+            <ion-icon class="icon1" src="../assets/images/usuario.svg" ></ion-icon>
+          </ion-fab-button>
+          <ion-fab-list side="top">
+            <ion-fab-button (click)="SetearUsuario('admin@admin.com', '111111')">Admin</ion-fab-button>
+            <ion-fab-button (click)="SetearUsuario('invitado@invitado.com', '222222')">Inv</ion-fab-button>
+            <ion-fab-button (click)="SetearUsuario('usuario@usuario.com', '333333')">Usu</ion-fab-button>                  
+            <ion-fab-button (click)="SetearUsuario('anonimo@anonimo.com', '444444')">Anon</ion-fab-button> 
+            <ion-fab-button (click)="SetearUsuario('tester@tester.com', '555555')">Test</ion-fab-button> 
+          </ion-fab-list>
+      </ion-fab>       
+  </div>
+</ion-content>

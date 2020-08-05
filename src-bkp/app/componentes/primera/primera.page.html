@@ -1,0 +1,22 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>primera</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngFor="let lista of listaImagenes" (click)="abrirFoto(lista)" >
+          <ion-label>{{lista.nombreUsuario}}</ion-label>
+          <ion-img [src]="lista.img" class="fotoLista"></ion-img>
+        </ion-item>        
+    </ion-list>
+  <!--<button ion-button color="dark" (click)="fotoOK()" > Take Photo </button>
+
+  <img [src]="currentImage" *ngIf="currentImage">  -->
+  
+</ion-content>
+
+
+

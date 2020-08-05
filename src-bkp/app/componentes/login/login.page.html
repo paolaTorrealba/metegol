@@ -1,0 +1,21 @@
+
+<ion-nav  *ngIf="mostrarLogin" [root]="rootPage" #content swipeBackEnabled="false" class="nav"></ion-nav>
+<div   *ngIf="mostrarLogin" class="login-page">
+   <div class="form">
+     <form class="register-form">
+       <input position="floating" type="text" placeholder="name"/>
+       <input position="floating" type="password" placeholder="password"/>
+       <input type="text" placeholder="email address"/>
+       <button>create</button>
+       <p class="message">Already registered? <a href="#">Sign In</a></p>
+     </form>
+     <form class="login-form">
+       <input  type="text"  [(ngModel)]="email" name="email" placeholder="email"/>
+       <input  type="password"  [(ngModel)]="password"  name="password" placeholder="password"/>
+       <button (click)="onSubmitLogin()" expand="block" >login</button>
+     <!--   <p class="message">Not registered? <a href="#">Create an account</a></p>--> 
+       
+   </form>     
+   </div>
+  
+ </div>

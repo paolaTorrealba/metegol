@@ -1,0 +1,14 @@
+<ion-header>
+  <ion-toolbar color="tertiary">
+    <ion-button slot="start" fill="clear" (click)="closeFoto()">
+      <ion-icon name="close"></ion-icon>
+    </ion-button>
+    <ion-title>{{nombreUsuario}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content padding>
+    <ion-img [src]="img" ></ion-img>
+</ion-content>
+<ion-footer>
+  <ion-button>like</ion-button>
+</ion-footer>
