@@ -15,17 +15,21 @@ import { Storage } from '@ionic/storage';
   styleUrls: ['./login.page.scss'],
 })
 export class LoginPage implements OnInit {
-  public email: string;
-  public password: string;
+  // public email: string;
+  // public password: string;
+  // errorMessage: string = '';
+  // form: FormGroup;
+  // defaultUsers: Array<any> = [];
+  // usuario: Usuario;
+  // suscripcion:Subscription;
+  
+  validations_form: FormGroup;
   errorMessage: string = '';
-  form: FormGroup;
   defaultUsers: Array<any> = [];
   usuario: Usuario;
-  suscripcion:Subscription;
-
-
-  splash = true;
-  audioSplash = true;
+  public email;
+  public password;
+ 
 
   constructor(
     private router: Router,
@@ -33,21 +37,24 @@ export class LoginPage implements OnInit {
     private authService: AuthService,
     private userService: UsuarioService,
     private toastService:ToastService,
+    private navCtrl: NavController,
     private loadingController: LoadingController,
     private storage: Storage
 
    
   ) { 
-    this.usuario= new Usuario();
-    this.usuario.email='';
-    this.usuario.passoword='';
-    this.email='';
-    this.password='';
+        console.log("estoy en el contructor de login")
+    // this.usuario= new Usuario();
+    // this.usuario.email='';
+    // this.usuario.passoword='';
+    // this.email='';
+    // this.password='';
   }
 
   ngOnInit() {
-    this.addDefaultUser();
-    this.form = this.formBuilder.group({
+    // this.addDefaultUser();
+    this.agregarUsuariosDefault();
+    this.validations_form = this.formBuilder.group({
       email: new FormControl('', Validators.compose([
         Validators.required,
         Validators.pattern('^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+.[a-zA-Z0-9-.]+$')
@@ -80,41 +87,77 @@ export class LoginPage implements OnInit {
     ]
   };
 
-  addDefaultUser() {
+  agregarUsuariosDefault(){
     this.defaultUsers.push({"email":"anonimo@anonimo.com", "password":"444444", "perfil":"usuario", "sexo":"masculino"});
     this.defaultUsers.push({"email":"tester@tester.com", "password":"555555", "perfil":"tester","sexo": "femenino"});
     this.defaultUsers.push({"email":"admin@admin.com", "password":"111111", "perfil":"admin", "sexo":"femenino"});
     this.defaultUsers.push({"email":"invitado@invitado.com", "password":"222222", "perfil":"invitado", "sexo":"femenino"});
     this.defaultUsers.push({"email":"usuario@usuario.com", "password":"333333", "perfil":"usuario", "sexo":"masculino"});
+
   }
 
-  setDefaultUser() {
-    this.email=this.usuario['email'];
-    this.password=this.usuario['password'];
-    console.log("setDefaultUser ",this.usuario)
-    this.onSubmitLogin(this.usuario);
+  SetearUsuario(email: string, password: string) {
+    console.log("seteo de usuario", email, password)
+    this.email = email;
+    this.password = password;   
+  
   }
-
-  async onSubmitLogin(form) { 
-    this.email=this.usuario['email'];
-    this.password=this.usuario['password'];
-    form.email=this.usuario['email'];
-    form.password=this.usuario['password'];
-    console.log("onSubmitLogin +",form) 
-    let respuesta;
-    this.presentLoading();
+  loginUsuario(value){
+    console.log("value", value)
+     value.email=this.email;
+    value.password=this.password; 
     
-    try {
-
-    this.authService.loginUser(form)
+    console.log("value2", value) 
+    this.presentLoading();  
+    this.authService.loginUser(value)
     .then(res => {
       this.errorMessage = "";
-      console.log("guardo en storage ",form.perfil)
-      this.storage.set('perfil', form.perfil);
-      this.router.navigate([`/home`]);
+      this.navCtrl.navigateForward('/home');
     }, err => {
       this.errorMessage = err.message;
     })
+  }
+
+
+  // setDefaultUser() {
+  //   this.email=this.usuario['email'];
+  //   this.password=this.usuario['password'];
+  //   console.log("setDefaultUser ",this.usuario)
+  //   // this.onSubmitLogin(this.usuario);
+  //   this.inicio();
+  // }
+
+  // async onSubmitLogin(form) { 
+  //   this.email=this.usuario['email'];
+  //   this.password=this.usuario['password'];
+  //   if(this.email=="admin@admin.com"){
+  //     console.log("es admin")
+  //     localStorage.setItem("perfilMetegol","admin");
+  //   } else{
+  //     localStorage.setItem("perfilMetegol","x");
+  //    }
+
+
+  //   form.email=this.usuario['email'];
+  //   form.password=this.usuario['password'];
+  //   console.log("onSubmitLogin +",form) 
+  //   let respuesta;
+  //   this.presentLoading();
+    
+  //   try {
+
+  //   this.authService.loginUser(form)
+  //   .then(res => {
+  //     console.log("resuesta:", res)
+  //     this.errorMessage = "";
+  //     console.log("guardo en storage ",form.perfil)
+  //     this.storage.set('perfil', form.perfil);
+  //     this.router.navigate(['/home']);
+  //   }, err => {
+  //     console.log("error de login: ",err)
+  //     this.errorMessage = err.message;
+  //   })
+  // ------------------
       // respuesta = await this.authService.logIn(form.email, form.password);
       // console.log("respuesta", respuesta)
       // this.suscripcion = this.userService.getUser(respuesta.user.uid)
@@ -129,16 +172,48 @@ export class LoginPage implements OnInit {
       //     }
       //    }   
       // })        
-    } catch (error) {
-      console.log("error", error);
-      this.toastService.mostrarToast('Error: Verifique usuario y contraseña', 'error');
-    } 
+    // } catch (error) {
+    //   console.log("error", error);
+    //   this.toastService.mostrarToast('Error: Verifique usuario y contraseña', 'error');
+    // } 
     
 
     
-  }
+  // }
 
  
+//  inicio(){
+//    try{
+//     this.email=this.usuario['email'];
+//     this.password=this.usuario['password'];
+//     localStorage.setItem("userMetegol",this.email);
+//     if(this.email=="admin@admin.com"){
+//       console.log("es admin")
+//       localStorage.setItem("perfilMetegol","admin");
+//     }
+//    else{
+//     localStorage.setItem("perfilMetegol","x");
+//    }
+//     this.authService.loginUser(this.usuario)
+//     .then(res => {
+//       console.log("resuesta:", res)
+//       this.errorMessage = "";
+//       // console.log("guardo en storage ",form.perfil)
+//       // this.storage.set('perfil', form.perfil);
+//       // this.router.navigate(['/home']);
+
+//       this.presentLoading();
+//       this.navCtrl.navigateForward('/home');
+//     }, err => {
+//       console.log("error de login: ",err)
+//       this.errorMessage = err.message;
+//     })
+      
+//     } catch (error) {
+//       console.log("error", error);
+//       this.toastService.mostrarToast('Error: Verifique usuario y contraseña', 'error');
+//     } 
+//   }
  
 
 }

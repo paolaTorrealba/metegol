@@ -32,7 +32,7 @@ export class ListadoMejoresPage implements OnInit {
    }
  
    inicio (){
-     this.router.navigate([`/home`]);
+     this.router.navigate(['/home']);
    }
  
    ngOnInit() {

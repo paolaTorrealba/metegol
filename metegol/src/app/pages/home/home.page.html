@@ -23,10 +23,13 @@
     </ion-header>
     
     
-  <ion-content>
+  <ion-content *ngIf="usu!=undefined">
+    {{user}}
+
+  
     <div class="login-wrap">
       <div class="login-html">     
-        <div class="image" *ngIf="perfil=='admin'">
+        <div class="image" *ngIf="usu=='admin@admin.com'">
           <h2><span>CREAR PARTIDO</span></h2>
           <img src="../../../assets/imagenes/nuevo.png" (click)="crearPartido()" class="buttones">
           
@@ -39,7 +42,7 @@
         <app-botones [type]="'feas'" [photoUrl]="'../../../assets/images/casa_fea.png'" [destinationUrl]="'/main/camera/feas'"></app-botones> -->
         <div class="image">
             <h2><span>LOS 5 MEJORES</span></h2>
-            <img src="../../../assets/imagenes/listado.png" (click)="listadoMejores()" class="buttones">
+            <img src="../../../assets/imagenes/ganadores.png" (click)="listadoMejores()" class="buttones">
         </div>
       
       </div>

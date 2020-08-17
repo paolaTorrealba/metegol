@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes, Router } from '@angular/router';
 
 const routes: Routes = [  
   { path: '', redirectTo: 'login', pathMatch: 'full' },
@@ -11,7 +11,7 @@ const routes: Routes = [
   // { path: 'main', loadChildren: './pages/main/main.module#MainPageModule' },
   { path: 'listado', loadChildren: './pages/listado/listado.module#ListadoPageModule' },
   { path: 'altas', loadChildren: './pages/altas/altas.module#AltasPageModule' },
-  { path: 'modal-detalle-partido', loadChildren: './pages/modal-detalle-partido/modal-detalle-partido.module#ModalDetallePartidoPageModule' },
+  // { path: 'modal-detalle-partido', loadChildren: './pages/modal-detalle-partido/modal-detalle-partido.module#ModalDetallePartidoPageModule' },
   { path: 'listado-mejores', loadChildren: './pages/listado-mejores/listado-mejores.module#ListadoMejoresPageModule' },
 ];
 
@@ -21,4 +21,6 @@ const routes: Routes = [
   ],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+  constructor(private router: Router) { }
+}

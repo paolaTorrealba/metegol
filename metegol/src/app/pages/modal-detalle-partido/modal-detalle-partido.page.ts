@@ -5,6 +5,7 @@ import { PartidoService } from 'src/app/servicios/partido.service';
 import { CameraService } from 'src/app/servicios/camera.service';
 import { GanadoresService } from 'src/app/servicios/ganadores.service';
 import { Ganadores } from 'src/app/clases/ganadores';
+import { AuthService } from 'src/app/servicios/auth.service';
 
 @Component({
   selector: 'app-modal-detalle-partido',
@@ -16,25 +17,38 @@ export class ModalDetallePartidoPage implements OnInit {
   public listaGanadores :Ganadores[];
   public contador: number=0;
   public ganador:Ganadores;
-
+  public usu:string;
   constructor(
     private navCtrl: NavController,
     public ganadoresService :GanadoresService,
     private partidoService:PartidoService,
+    private authService:AuthService,
     public modalController: ModalController,
     public toastController: ToastController,
     private camaraService: CameraService,
     private loadingController: LoadingController,
 
   ) { 
+    // this.usu = this.authService.getCurrentUser().email;
+    
+    // this.presentLoading();
+    // if( this.usu==undefined){
+    //   this.navCtrl.navigateForward('/login');
+    // }
     console.log("construcor de MODAL", this.partido)
-    if(this.partido==undefined){
-      this.navCtrl.navigateForward('/home');
+    if(this.partido==null || this.partido==undefined  ){
+      this.navCtrl.navigateForward('/login');
     }
 
   }
 
   ngOnInit() {
+    this.usu = this.authService.getCurrentUser().email;
+    console.log("ngOnInit Modal", this.usu)
+    this.presentLoading();
+    if( this.usu==undefined){
+      this.navCtrl.navigateForward('/login');
+    }
     this.ganadoresService.getAllGanadores().subscribe(data => {
       this.listaGanadores = data;      
     });
